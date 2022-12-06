@@ -5,6 +5,10 @@ $(document).ready(init)
 function init() {
     console.log('Started...')
     renderProj()
+    $('.contact-form').on('submit', function (event) {
+        onSubmitContactForm(this)
+        event.preventDefault()
+    })
 }
 
 function renderProj() {
@@ -35,16 +39,17 @@ function renderProj() {
 
 function renderModal(proj) {
     // the function gets the clicked item and use his proj objct
-
+    const year = proj.publishedAt.getFullYear()
+    const month = proj.publishedAt.getMonth()
     var str = `
                 <h2>${proj.name}</h2>
                 <p class="item-intro text-muted">${proj.title}</p>
                 <img class="img-fluid d-block mx-auto" src="img/portfolio/${proj.name}-full.jpg" alt="">
                 <p>${proj.desc}</p>
                 <ul class="list-inline">
-                  <li>Date: ${proj.publishedAt}</li>
-                  <li>Url: ${proj.url}</li>
-                  <li>Labels: ${proj.labels}</li>
+                  <li>Date: ${month}/${year}</li>
+                  <li>Url: <a href="${proj.url}">Github Pages</a></li>
+                  <li>Labels: ${proj.labels.join(', ')}</li>
                 </ul>
                 <button class="btn btn-primary" data-dismiss="modal" type="button">
                   <i class="fa fa-times"></i>
@@ -59,4 +64,15 @@ function onClickPortfolio(projName) {
     renderModal(proj)
 }
 
+function onSubmitContactForm(ev) {
+    var $elEmail = $('.email').val()
+    var $elSubject = $('.subject').val()
+    var $elMessage = $('.message').val()
+    console.log($elEmail)
+    console.log($elSubject)
+    console.log($elMessage)
+
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=yakobub@gmail.com&su=${$elSubject}&body=from:${$elEmail} Msg:${$elMessage}`)
+    $('.contact-form').reset()
+}
 

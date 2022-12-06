@@ -27,7 +27,7 @@ function creatProjs() {
         `I take you to the book shop..`
     ]
 
-    const publishedAts = [`1669048151000`, `1669307351000`, `1669652951000`, `1670171351000`]
+    const publishedAts = [new Date('November 21, 2022 16:24:00'), new Date('November 24, 2022 16:24:00'), new Date('November 28, 2022 16:24:00'), new Date('December 4, 2022 16:24:00')]
 
     const descs = [
         `Language: JS CSS HTML 
